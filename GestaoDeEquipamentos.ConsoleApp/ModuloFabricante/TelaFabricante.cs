@@ -12,6 +12,15 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
             repositorioFabricante = new RepositorioFabricante();
         }
 
+        public void ExibirCabecalho()
+        {
+            Console.Clear();
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("Controle de Fabricantes");
+            Console.WriteLine("--------------------------------------------");
+
+            Console.WriteLine();
+        }
 
         public char ApresentarMenu()
         {
@@ -131,15 +140,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
 
         }
 
-        public void ExibirCabecalho() 
-        {
-            Console.Clear();
-            Console.WriteLine("--------------------------------------------");
-            Console.WriteLine("Controle de Fabricantes");
-            Console.WriteLine("--------------------------------------------");
-
-            Console.WriteLine();
-        }
+        
 
         public Fabricante ObterDadosFabricante()
         {
@@ -150,16 +151,13 @@ namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
             string emailFabricante = Console.ReadLine()!.Trim();
 
             Console.Write("Digite o telefone da fabricante: ");
-            string telefoneFabricante = Convert.ToString(Console.ReadLine()!.Trim());
+            int numeroTelefone = Convert.ToInt32(Console.ReadLine()!.Trim());
 
             VisualizarFabricante(false);
 
-            Console.Write("Digite o ID do Fabricante que deseja selecionar: ");
-            int idFabricante = Convert.ToInt32(Console.ReadLine()!.Trim());
+            Fabricante fabricante = new Fabricante(nomeFabricante, emailFabricante, numeroTelefone);
 
-            Fabricante fabricanteSelecionado = repositorioFabricante.SelecionarFabricantePorId(idFabricante);
-
-            return fabricanteSelecionado;
+            return fabricante;
         }
     }
 }
